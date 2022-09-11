@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SettingsFragment"
+    >
+
+
+    <ImageView
+        android:id="@+id/iv_weatherImage_settingsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_location_settingsFragment"
+        tools:src="@drawable/ic_favorites"
+        />
+
+    <TextView
+        android:id="@+id/tv_location_settingsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_12x"
+        android:text="San Fransisco, California, USA"
+        android:textAppearance="@style/TextAppearance.Subtitle1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tv_weatherCondition_settingsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6x"
+        android:text="Shine"
+        android:textAppearance="@style/TextAppearance.Headline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/iv_weatherImage_settingsFragment"
+
+        />
+
+    <TextView
+        android:id="@+id/tv_temperature_settingsFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6x"
+        android:text="20 C"
+        android:textAppearance="@style/TextAppearance.Headline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_weatherCondition_settingsFragment"
+
+        />
+
+    <include
+        android:id="@+id/layout_3condition_settingsFragment"
+        layout="@layout/layout_3condition"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_6x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_temperature_settingsFragment"
+
+        />
+
+    <include
+        android:id="@+id/layout_temperatureSettings_settingsFragment"
+        layout="@layout/layout_settings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_4x"
+        android:layout_marginTop="@dimen/dimen_12x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_3condition_settingsFragment"
+
+        />
+
+    <include
+        android:id="@+id/layout_windSpeedSettings_settingsFragment"
+        layout="@layout/layout_settings"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_4x"
+        android:layout_marginTop="@dimen/dimen_8x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_temperatureSettings_settingsFragment"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

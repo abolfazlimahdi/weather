@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/dimen_3x"
+    android:layout_margin="@dimen/dimen_2x"
+    app:cardBackgroundColor="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".adapters.FavoritesAdapter"
+        >
+
+        <ImageView
+            android:id="@+id/iv_weatherImage_favoriteItem"
+            android:layout_width="@dimen/dimen_9x"
+            android:layout_height="@dimen/dimen_9x"
+            android:layout_marginTop="@dimen/dimen_4x"
+            android:layout_marginEnd="@dimen/dimen_6x"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_favorites"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_temperature_favoriteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_6x"
+            android:text="21"
+            android:layout_marginStart="@dimen/dimen_6x"
+            android:textAppearance="@style/TextAppearance.Headline5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+        <TextView
+            android:id="@+id/tv_city_favoriteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Boston"
+            android:layout_marginTop="@dimen/dimen_4x"
+            android:textAppearance="@style/TextAppearance.Subtitle1"
+            android:layout_marginStart="@dimen/dimen_4x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_temperature_favoriteItem"
+            />
+
+        <TextView
+            android:id="@+id/tv_country_favoriteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="USA"
+            android:textAppearance="@style/TextAppearance.Subtitle1"
+            android:textColor="@color/gray"
+            android:layout_marginStart="@dimen/dimen_4x"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_city_favoriteItem"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_humidity_favoriteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4x"
+            android:layout_marginTop="@dimen/dimen_4x"
+            android:drawablePadding="@dimen/dimen_2x"
+            android:text="17%"
+            android:textAppearance="@style/TextAppearance.Caption"
+            app:drawableStartCompat="@drawable/ic_droplet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_country_favoriteItem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dimen_4x"
+            android:gravity="center"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_windSpeed_favoriteItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_4x"
+            android:layout_marginTop="@dimen/dimen_4x"
+            android:drawablePadding="@dimen/dimen_2x"
+            android:text="7km/h"
+            android:textAppearance="@style/TextAppearance.Caption"
+            app:drawableStartCompat="@drawable/ic_wind"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_country_favoriteItem"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="@dimen/dimen_4x"
+            android:gravity="center"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
