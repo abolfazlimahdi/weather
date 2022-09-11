@@ -65,7 +65,7 @@
     <style name="TextAppearance.Temperature" parent="TextAppearance.Headline4">
         <item name="fontFamily">@font/notoserif_bold</item>
         <item name="android:fontFamily">@font/notoserif_bold</item>
-        <item name="android:textSize">44sp</item>
+        <item name="android:textSize">36sp</item>
     </style>
 
 

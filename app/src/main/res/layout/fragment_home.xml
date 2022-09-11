@@ -1,142 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment"
+
     >
 
-    <ImageView
-        android:id="@+id/iv_weatherImage_homeFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
 
-    <TextView
-        android:id="@+id/tv_cityName_homeFragment"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_6x"
-        android:layout_marginTop="@dimen/dimen_8x"
-        android:text="San Fransisco"
-        android:textAppearance="@style/TextAppearance.Headline6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        >
+
+        <ImageView
+            android:id="@+id/iv_weatherImage_homeFragment"
+            android:layout_width="0dp"
+            android:layout_height="160dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_cityName_homeFragment"
+            app:layout_constraintTop_toTopOf="parent"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_cityName_homeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_6x"
+            android:layout_marginTop="@dimen/dimen_8x"
+            android:text="San Fransisco"
+            android:textAppearance="@style/TextAppearance.Headline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
 
 
-    <TextView
-        android:id="@+id/tv_currentTemperature_homeFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_4x"
-        android:text="18C"
-        android:textAppearance="@style/TextAppearance.Temperature"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@id/tv_cityName_homeFragment"
-        app:layout_constraintStart_toStartOf="@id/tv_cityName_homeFragment"
-        app:layout_constraintTop_toBottomOf="@id/tv_cityName_homeFragment"
-        />
+        <TextView
+            android:id="@+id/tv_currentTemperature_homeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_4x"
+            android:layout_marginTop="@dimen/dimen_4x"
+            android:text="18C"
+            android:textAppearance="@style/TextAppearance.Temperature"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_cityName_homeFragment"
+            />
 
-    <TextView
-        android:id="@+id/tv_condition_homeFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_2x"
-        android:text="Cloudy"
-        android:textAppearance="@style/TextAppearance.Headline6"
-        app:layout_constraintEnd_toEndOf="@id/tv_cityName_homeFragment"
-        app:layout_constraintStart_toStartOf="@id/tv_cityName_homeFragment"
-        app:layout_constraintTop_toBottomOf="@id/tv_currentTemperature_homeFragment"
-        />
-
-
-    <TextView
-        android:id="@+id/tv_morning_homeFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_6x"
-        android:layout_marginTop="@dimen/dimen_8x"
-        android:drawablePadding="@dimen/dimen_2x"
-        android:text="7:00AM"
-        android:textAppearance="@style/TextAppearance.Body2"
-        app:drawableStartCompat="@drawable/ic_favorites"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_3condition_HomeFragment"
-        />
+        <TextView
+            android:id="@+id/tv_condition_homeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_6x"
+            android:layout_marginTop="@dimen/dimen_2x"
+            android:text="Cloudy"
+            android:textAppearance="@style/TextAppearance.Headline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_currentTemperature_homeFragment"
+            />
 
 
-    <TextView
-        android:id="@+id/tv_evening_homeFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_4x"
-        android:layout_marginEnd="@dimen/dimen_6x"
-        android:drawablePadding="@dimen/dimen_2x"
-        android:text="6:00AM"
-        android:textAppearance="@style/TextAppearance.Body2"
-        app:drawableStartCompat="@drawable/ic_favorites"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_morning_homeFragment"
-        />
-
-    <TextView
-        android:id="@+id/tv_todayLabel_homeFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dimen_6x"
-        android:layout_marginTop="@dimen/dimen_2x"
-        android:text="Today"
-        android:textAppearance="@style/TextAppearance.Subtitle1"
-        android:textColor="@color/gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_evening_homeFragment"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_hourly_homeFragment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/dimen_6x"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_todayLabel_homeFragment"
-        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_hourly_forecast"
-        tools:orientation="horizontal"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_daily_homeFragment"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/dimen_6x"
-        android:layout_marginTop="@dimen/dimen_8x"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_hourly_homeFragment"
-        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_daily_forecast"
-        />
-
-    <include
-        android:id="@+id/layout_3condition_HomeFragment"
-        layout="@layout/layout_3condition"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dimen_6x"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_weatherImage_homeFragment"
-        />
+        <TextView
+            android:id="@+id/tv_morning_homeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_6x"
+            android:layout_marginTop="@dimen/dimen_8x"
+            android:drawablePadding="@dimen/dimen_2x"
+            android:text="7:00AM"
+            android:textAppearance="@style/TextAppearance.Body2"
+            app:drawableStartCompat="@drawable/ic_favorites"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_3condition_HomeFragment"
+            />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_evening_homeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_4x"
+            android:layout_marginEnd="@dimen/dimen_6x"
+            android:drawablePadding="@dimen/dimen_2x"
+            android:text="6:00AM"
+            android:textAppearance="@style/TextAppearance.Body2"
+            app:drawableStartCompat="@drawable/ic_favorites"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_morning_homeFragment"
+            />
+
+        <TextView
+            android:id="@+id/tv_todayLabel_homeFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_6x"
+            android:layout_marginTop="@dimen/dimen_8x"
+            android:text="Today"
+            android:textAppearance="@style/TextAppearance.Subtitle1"
+            android:textColor="@color/gray"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_evening_homeFragment"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_threeHour_homeFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_6x"
+            android:layout_marginTop="@dimen/dimen_4x"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_todayLabel_homeFragment"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_three_hour_forecast"
+            tools:orientation="horizontal"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_daily_homeFragment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/dimen_6x"
+            android:layout_marginTop="@dimen/dimen_8x"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_threeHour_homeFragment"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_daily_forecast"
+            />
+
+        <include
+            android:id="@+id/layout_3condition_HomeFragment"
+            layout="@layout/layout_3condition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_6x"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_weatherImage_homeFragment"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

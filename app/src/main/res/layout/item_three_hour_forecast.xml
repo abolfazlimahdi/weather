@@ -6,36 +6,38 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginEnd="@dimen/dimen_4x"
-    tools:context=".adapters.HourlyForecastAdapter"
+    tools:context=".adapters.ThreeHourForecastAdapter"
     >
 
     <TextView
-        android:id="@+id/tv_hour_hourlyForecastItem"
+        android:id="@+id/tv_hour_threeHourForecastItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:textAppearance="@style/TextAppearance.Caption"
         android:text="10 AM"
         />
 
     <ImageView
-        android:id="@+id/iv_weatherImage_hourlyForecastItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tv_hour_hourlyForecastItem"
+        android:id="@+id/iv_weatherImage_threeHourForecastItem"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_hour_threeHourForecastItem"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/ic_favorites"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/dimen_2x"
         />
 
     <TextView
-        android:id="@+id/tv_temperature_hourlyForecastItem"
+        android:id="@+id/tv_temperature_threeHourForecastItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_2x"
-        app:layout_constraintTop_toBottomOf="@id/iv_weatherImage_hourlyForecastItem"
+        app:layout_constraintTop_toBottomOf="@id/iv_weatherImage_threeHourForecastItem"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:textAppearance="@style/TextAppearance.Body2"
         android:text="10 AM"
         />

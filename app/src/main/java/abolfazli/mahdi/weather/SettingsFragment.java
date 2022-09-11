@@ -47,7 +47,7 @@ public class SettingsFragment extends Fragment {
         tvTemperatureUnitLabel = viewTemperatureSettingsLayout.findViewById(R.id.tv_label_settingsLayout);
         tvTemperatureUnitValue = viewTemperatureSettingsLayout.findViewById(R.id.tv_value_settingsLayout);
         tvTemperatureUnitLabel.setText(R.string.label_temperature);
-        tvTemperatureUnitValue.setText(R.string.label_temperature_Celcius);
+        tvTemperatureUnitValue.setText(R.string.label_temperature_Celsius);
 
 
         viewWindSpeedSettingsLayout = view.findViewById(R.id.layout_windSpeedSettings_settingsFragment);

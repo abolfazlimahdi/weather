@@ -9,22 +9,24 @@ import android.widget.TextView;
 import java.util.List;
 
 import abolfazli.mahdi.weather.R;
-import abolfazli.mahdi.weather.entities.HourlyEntity;
+import abolfazli.mahdi.weather.entities.ThreeHourEntity;
+import abolfazli.mahdi.weather.utils.NumberUtils;
+import abolfazli.mahdi.weather.utils.ViewUtils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAdapter.TodayHourlyVH> {
+public class ThreeHourForecastAdapter extends RecyclerView.Adapter<ThreeHourForecastAdapter.TodayHourlyVH> {
 
-    private List<HourlyEntity> items;
+    private List<ThreeHourEntity> items;
 
-    public HourlyForecastAdapter(List<HourlyEntity> items) {
+    public ThreeHourForecastAdapter(List<ThreeHourEntity> items) {
         this.items = items;
     }
 
     @Override
     public TodayHourlyVH onCreateViewHolder(@NonNull ViewGroup parent, final int position) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_hourly_forecast, parent, false);
+                .inflate(R.layout.item_three_hour_forecast, parent, false);
         return new TodayHourlyVH(view);
     }
 
@@ -46,16 +48,16 @@ public class HourlyForecastAdapter extends RecyclerView.Adapter<HourlyForecastAd
 
         public TodayHourlyVH(@NonNull View itemView) {
             super(itemView);
-            tvHour = itemView.findViewById(R.id.tv_hour_hourlyForecastItem);
-            tvTemperature = itemView.findViewById(R.id.tv_temperature_hourlyForecastItem);
-            ivWeatherImage = itemView.findViewById(R.id.iv_weatherImage_hourlyForecastItem);
+            tvHour = itemView.findViewById(R.id.tv_hour_threeHourForecastItem);
+            tvTemperature = itemView.findViewById(R.id.tv_temperature_threeHourForecastItem);
+            ivWeatherImage = itemView.findViewById(R.id.iv_weatherImage_threeHourForecastItem);
         }
 
-        public void bind(HourlyEntity item) {
+        public void bind(ThreeHourEntity item) {
             tvHour.setText(item.getHour());
-            tvTemperature.setText(String.valueOf(item.getTemperature()));
-
-
+            tvTemperature.setText(NumberUtils.decorateTemperature(item.getTemperature()));
+            ViewUtils.loadWeatherIcons(ivWeatherImage, item.getIconName(), ViewUtils.IconSize.SMALL);
         }
+
     }
 }
