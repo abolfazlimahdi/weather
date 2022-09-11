@@ -13,7 +13,6 @@
         android:id="@+id/iv_weatherImage_dailyForecastItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_favorites"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -23,7 +22,7 @@
         android:id="@+id/tv_day_dailyForecastItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="10 AM"
+        tools:text="10 AM"
         android:textAppearance="@style/TextAppearance.Subtitle2"
         android:textColor="@color/gray"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,10 +31,10 @@
 
     <TextView
         android:id="@+id/tv_maxTemperature_dailyForecastItem"
-        android:layout_width="30dp"
+        android:layout_width="36dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/dimen_4x"
-        android:text="19"
+        tools:text="19"
         android:textAppearance="@style/TextAppearance.Subtitle1"
         app:layout_constraintEnd_toStartOf="@id/tv_minTemperature_dailyForecastItem"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,9 +42,9 @@
 
     <TextView
         android:id="@+id/tv_minTemperature_dailyForecastItem"
-        android:layout_width="30dp"
+        android:layout_width="36dp"
         android:layout_height="wrap_content"
-        android:text="15"
+        tools:text="15"
         android:textAppearance="@style/TextAppearance.Subtitle1"
         android:textColor="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"

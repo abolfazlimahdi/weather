@@ -2,15 +2,15 @@ package abolfazli.mahdi.weather.entities;
 
 public class DailyEntity {
    private String day;
-   private int maxTemp;
-   private int minTemp;
-   private String imageUrl;
+   private double maxTemp;
+   private double minTemp;
+   private String iconName;
 
-    public DailyEntity(String day, int maxTemp, int minTemp, String imageUrl) {
+    public DailyEntity(String day, double maxTemp, double minTemp, String iconName) {
         this.day = day;
         this.maxTemp = maxTemp;
         this.minTemp = minTemp;
-        this.imageUrl = imageUrl;
+        this.iconName = iconName;
     }
 
     public String getDay() {
@@ -21,27 +21,32 @@ public class DailyEntity {
         this.day = day;
     }
 
-    public int getMaxTemp() {
+    public double getMaxTemp() {
         return maxTemp;
     }
 
-    public void setMaxTemp(int maxTemp) {
+    public void setMaxTemp(double maxTemp) {
         this.maxTemp = maxTemp;
     }
 
-    public int getMinTemp() {
+    public double getMinTemp() {
         return minTemp;
     }
 
-    public void setMinTemp(int minTemp) {
+    public void setMinTemp(double minTemp) {
         this.minTemp = minTemp;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
+    public String getIconName() {
+        return iconName;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public void setIconName(String iconName) {
+        this.iconName = iconName;
+    }
+
+    @Override
+    public String toString() {
+        return "day: " + day + " maxTemp: " + maxTemp + " minTemp: " + minTemp +  " iconName: " + iconName;
     }
 }

@@ -2,7 +2,6 @@ package abolfazli.mahdi.weather;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,10 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
-import java.util.Random;
 
 import abolfazli.mahdi.weather.adapters.DailyForecastAdapter;
 import abolfazli.mahdi.weather.adapters.ThreeHourForecastAdapter;
@@ -29,6 +25,7 @@ import abolfazli.mahdi.weather.entities.CurrentWeatherEntity;
 import abolfazli.mahdi.weather.entities.DailyEntity;
 import abolfazli.mahdi.weather.entities.ThreeHourEntity;
 import abolfazli.mahdi.weather.utils.ApiUtils;
+import abolfazli.mahdi.weather.utils.DateUtils;
 import abolfazli.mahdi.weather.utils.NumberUtils;
 import abolfazli.mahdi.weather.utils.ViewUtils;
 import androidx.annotation.NonNull;
@@ -39,8 +36,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class HomeFragment extends Fragment {
 
-    private List<ThreeHourEntity> threeHourEntityList;
-    private List<DailyEntity> dailyEntityList = new ArrayList<>();
     private RecyclerView rvThreeHour;
     private RecyclerView rvDaily;
     private ThreeHourForecastAdapter threeHourForecastAdapter;
@@ -66,7 +61,6 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         initView(view);
         initValues();
-        initDataset();
         rvThreeHour = view.findViewById(R.id.rv_threeHour_homeFragment);
 
 
@@ -75,8 +69,7 @@ public class HomeFragment extends Fragment {
 
         rvDaily = view.findViewById(R.id.rv_daily_homeFragment);
         rvDaily.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
-        dailyAdapter = new DailyForecastAdapter(dailyEntityList);
-        rvDaily.setAdapter(dailyAdapter);
+
     }
 
     private void initView(View view) {
@@ -103,7 +96,7 @@ public class HomeFragment extends Fragment {
 
     private void initValues() {
         RequestQueue queue = Volley.newRequestQueue(getActivity());
-        String currentWeatherUrl = ApiUtils.getUrlByLatLong(ApiUtils.ApiEndpoint.CURRENT, ApiUtils.Units.METRIC, 51.5072, 0.127);
+        String currentWeatherUrl = ApiUtils.getUrlByLatLong(ApiUtils.ApiEndpoint.CURRENT, ApiUtils.Units.METRIC, 51.5072, -0.127);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, currentWeatherUrl, null,
                         this::parseCurrentWeatherJson,
@@ -112,56 +105,14 @@ public class HomeFragment extends Fragment {
                         });
         queue.add(jsonObjectRequest);
 
-        String hourlyUrl = ApiUtils.getUrlByLatLong(ApiUtils.ApiEndpoint.THREE_HOUR, ApiUtils.Units.METRIC, 51.5072, 0.127);
-        JsonObjectRequest hourlyObjectRequest = new JsonObjectRequest(Request.Method.GET, hourlyUrl, null,
-                this::parseHourlyWeatherJson,
+        String threeHourUrl = ApiUtils.getUrlByLatLong(ApiUtils.ApiEndpoint.THREE_HOUR, ApiUtils.Units.METRIC, 51.5072, -0.127);
+        JsonObjectRequest threeHourObjectRequest = new JsonObjectRequest(Request.Method.GET, threeHourUrl, null,
+                this::parseThreeHourWeatherJson,
                 error -> {
                     Log.e("Hourly", error.toString());
                 }
         );
-        queue.add(hourlyObjectRequest);
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private void parseHourlyWeatherJson(JSONObject response) {
-        ThreeHourEntity hourlyEntity;
-        Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
-        List<ThreeHourEntity> totalThreeHourEntities = new ArrayList<>();
-        try {
-            JSONArray hourlyArray = response.getJSONArray("list");
-            int count = response.getInt("cnt");
-            JSONObject hourlyObject;
-            JSONObject mainObject;
-            JSONObject weatherObject;
-
-            for (int i = 0; i < count; i++) {
-                hourlyEntity = new ThreeHourEntity();
-                hourlyObject = hourlyArray.getJSONObject(i);
-
-                String timestampResponse = hourlyObject.getString("dt");
-                long timestampLong = Long.parseLong(timestampResponse);
-                calendar.setTimeInMillis(timestampLong * 1000);
-                String date = DateFormat.format("h a", calendar).toString();
-                hourlyEntity.setHour(date);
-
-                mainObject = hourlyObject.getJSONObject("main");
-                hourlyEntity.setTemperature(mainObject.getDouble("temp"));
-
-                weatherObject = hourlyObject.getJSONArray("weather").getJSONObject(0);
-                hourlyEntity.setIconName(weatherObject.getString("icon"));
-
-                totalThreeHourEntities.add(hourlyEntity);
-            }
-
-            threeHourEntityList = new ArrayList<>(totalThreeHourEntities.subList(0, 8));
-
-            threeHourForecastAdapter = new ThreeHourForecastAdapter(threeHourEntityList);
-            rvThreeHour.setAdapter(threeHourForecastAdapter);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+        queue.add(threeHourObjectRequest);
     }
 
     private void parseCurrentWeatherJson(JSONObject response) {
@@ -205,27 +156,76 @@ public class HomeFragment extends Fragment {
         ViewUtils.loadWeatherIcons(ivWeatherImage, weather.getImage(), ViewUtils.IconSize.MEDIUM);
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    private void parseThreeHourWeatherJson(JSONObject response) {
+        ThreeHourEntity threeHourEntity;
 
-    private void initDataset() {
-        Random random = new Random();
+        List<ThreeHourEntity> totalThreeHourEntities = new ArrayList<>();
+        try {
+            JSONArray hourlyArray = response.getJSONArray("list");
+            int count = response.getInt("cnt");
+            JSONObject threeHourObject;
+            JSONObject mainObject;
+            JSONObject weatherObject;
 
-        int dailyMin = 15;
-        int dailyAverage = 25;
-        int dailyMax = 35;
+            for (int i = 0; i < count; i++) {
+                threeHourEntity = new ThreeHourEntity();
+                threeHourObject = hourlyArray.getJSONObject(i);
 
+                String timestampResponse = threeHourObject.getString("dt");
+                long timestampLong = Long.parseLong(timestampResponse);
+                threeHourEntity.setTimestamp(timestampLong);
+                threeHourEntity.setHour(DateUtils.calculateHourFromTimestamp(timestampLong));
+                threeHourEntity.setWeekDay(DateUtils.calculateWeekdayFromTimestamp(timestampLong));
 
-        String[] days = {"Tue", "Wed", "Thur", "Fri", "Sat", "Fri"};
-        for (int i = 0; i < 6; i++) {
-            dailyEntityList.add(new DailyEntity(
-                    days[i],
-                    random.nextInt(dailyMax - dailyAverage) + dailyAverage + 1,
-                    random.nextInt(dailyAverage - dailyMin) + dailyMin + 1,
-                    ""
-            ));
+                mainObject = threeHourObject.getJSONObject("main");
+                threeHourEntity.setTemperature(mainObject.getDouble("temp"));
+
+                weatherObject = threeHourObject.getJSONArray("weather").getJSONObject(0);
+                threeHourEntity.setIconName(weatherObject.getString("icon"));
+
+                totalThreeHourEntities.add(threeHourEntity);
+            }
+
+            convertThreeHourToDaily(totalThreeHourEntities);
+            List<ThreeHourEntity> threeHourEntityList = new ArrayList<>(totalThreeHourEntities.subList(0, 8));
+            threeHourForecastAdapter = new ThreeHourForecastAdapter(threeHourEntityList);
+            rvThreeHour.setAdapter(threeHourForecastAdapter);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-
     }
+
+
+
+    private void convertThreeHourToDaily(List<ThreeHourEntity> threeHourEntityList) {
+        List<DailyEntity> dailyEntityList = new ArrayList<>();
+        double minTemp = Double.MAX_VALUE, maxTemp = Double.MIN_VALUE;
+        String weekDay = threeHourEntityList.get(0).getWeekDay();
+
+        ThreeHourEntity threeHourEntity;
+        for (int i = 0; i < threeHourEntityList.size(); i++) {
+            threeHourEntity = threeHourEntityList.get(i);
+            if (weekDay.equals(threeHourEntity.getWeekDay())) {
+                if (threeHourEntity.getTemperature() < minTemp) {
+                    minTemp = threeHourEntity.getTemperature();
+                }
+                if (threeHourEntity.getTemperature() > maxTemp) {
+                    maxTemp = threeHourEntity.getTemperature();
+                }
+            } else {
+                dailyEntityList.add(new DailyEntity(weekDay, maxTemp, minTemp, threeHourEntity.getIconName()));
+                minTemp = Double.MAX_VALUE;
+                maxTemp = Double.MIN_VALUE;
+            }
+            weekDay = threeHourEntityList.get(i).getWeekDay();
+        }
+
+        dailyAdapter = new DailyForecastAdapter(dailyEntityList);
+        rvDaily.setAdapter(dailyAdapter);
+    }
+
 
 
 }

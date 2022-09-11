@@ -10,6 +10,8 @@ import java.util.List;
 
 import abolfazli.mahdi.weather.R;
 import abolfazli.mahdi.weather.entities.DailyEntity;
+import abolfazli.mahdi.weather.utils.NumberUtils;
+import abolfazli.mahdi.weather.utils.ViewUtils;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -58,8 +60,9 @@ public class DailyForecastAdapter extends RecyclerView.Adapter<DailyForecastAdap
 
         public void bind(DailyEntity item) {
             tvDay.setText(item.getDay());
-            tvMaxTemp.setText(String.valueOf(item.getMaxTemp()));
-            tvMinTemp.setText(String.valueOf(item.getMinTemp()));
+            tvMaxTemp.setText(NumberUtils.decorateTemperature(item.getMaxTemp()));
+            tvMinTemp.setText(NumberUtils.decorateTemperature(item.getMinTemp()));
+            ViewUtils.loadWeatherIcons(ivWeatherImage, item.getIconName(), ViewUtils.IconSize.SMALL);
         }
 
     }
